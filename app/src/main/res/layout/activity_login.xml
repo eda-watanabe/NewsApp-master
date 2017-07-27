@@ -16,7 +16,6 @@
         app:title="@string/login"
         app:titleTextColor="@color/white" />
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,6 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="idを入力"
+            android:inputType="textEmailAddress"
+            android:lines="1"
             android:textSize="14sp" />
 
         <TextView
@@ -50,6 +51,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="パスワードを入力"
+            android:inputType="number"
+            android:lines="1"
             android:textSize="14sp" />
 
     </LinearLayout>
@@ -61,5 +64,13 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="32dp"
         android:text="ログイン" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        tools:visibility="visible" />
 
 </RelativeLayout>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import jp.inc.eda.newsapp_master.R;
 import jp.inc.eda.newsapp_master.domain.usecase.LoginUseCase;
@@ -17,6 +18,7 @@ public class LoginActivity extends BaseActivity {
 
     private EditText id;
     private EditText pass;
+    private ProgressBar progress;
 
     private LoginUseCase loginUseCase;
     private TokenRepository tokenRepository;
@@ -35,37 +37,45 @@ public class LoginActivity extends BaseActivity {
 
         id = (EditText) findViewById(R.id.edit_id);
         pass = (EditText) findViewById(R.id.edit_pass);
+        progress = (ProgressBar) findViewById(R.id.progress_bar);
         findViewById(R.id.button_login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String i = id.getText().toString();
-                String p = pass.getText().toString();
-                if (i.isEmpty() || p.isEmpty()) {
-                    showToast("入力してください");
-                    return;
-                }
-                loginUseCase.login(i, p, new LoginUseCase.OnLoadingListener() {
-                    @Override
-                    public void onSuccess(String authToken) {
-                        tokenRepository.saveToken(authToken);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                startActivity(new Intent(LoginActivity.this, ArticlesActivity.class));
-                            }
-                        });
-                    }
+                if (progress.getVisibility() == View.GONE) {
+                    progress.setVisibility(View.VISIBLE);
 
-                    @Override
-                    public void onError(final String content) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                showToast(content);
-                            }
-                        });
+                    String i = id.getText().toString();
+                    String p = pass.getText().toString();
+                    if (i.isEmpty() || p.isEmpty()) {
+                        showToast("入力してください");
+                        return;
                     }
-                });
+                    loginUseCase.login(i, p, new LoginUseCase.OnLoadingListener() {
+                        @Override
+                        public void onSuccess(String authToken) {
+                            tokenRepository.saveToken(authToken);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    startActivity(new Intent(LoginActivity.this, ArticlesActivity.class));
+                                    finish();
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onError(final String content) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    showToast(content);
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    showToast("ログイン中です");
+                }
             }
         });
     }
