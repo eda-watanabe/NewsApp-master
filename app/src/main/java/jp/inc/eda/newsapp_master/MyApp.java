@@ -5,11 +5,19 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
+import io.realm.Realm;
+
 /**
  * Created by watanabe on 2017/07/27.
  */
 
 public class MyApp extends Application {
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Realm.init(this);
+    }
 
     /**
      * バージョンコードを取得する

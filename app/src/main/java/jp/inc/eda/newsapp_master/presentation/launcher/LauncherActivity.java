@@ -9,6 +9,7 @@ import jp.inc.eda.newsapp_master.MyApp;
 import jp.inc.eda.newsapp_master.R;
 import jp.inc.eda.newsapp_master.infra.repository.TokenRepository;
 import jp.inc.eda.newsapp_master.presentation.BaseActivity;
+import jp.inc.eda.newsapp_master.presentation.article_list.ArticlesActivity;
 import jp.inc.eda.newsapp_master.presentation.login.LoginActivity;
 
 public class LauncherActivity extends BaseActivity {
@@ -30,7 +31,8 @@ public class LauncherActivity extends BaseActivity {
                     startActivity(new Intent(LauncherActivity.this, LoginActivity.class));
                     finish();
                 } else {
-                    // TODO: 2017/07/27
+                    startActivity(new Intent(LauncherActivity.this, ArticlesActivity.class));
+                    finish();
                 }
             }
         }, 3000);//ms

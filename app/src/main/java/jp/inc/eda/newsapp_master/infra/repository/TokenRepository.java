@@ -13,11 +13,9 @@ public class TokenRepository {
     private static final String TAG = "TokenRepository";
     private static final String AUTH_TOKEN = "auth_token";
 
-    private final Context context;
     private final SharedPreferences pref;
 
     public TokenRepository(Context context) {
-        this.context = context;
         this.pref = context.getSharedPreferences(TAG, Context.MODE_PRIVATE);
     }
 

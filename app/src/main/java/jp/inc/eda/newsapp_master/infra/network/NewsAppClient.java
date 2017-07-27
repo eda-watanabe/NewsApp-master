@@ -15,7 +15,7 @@ public class NewsAppClient {
     private static final String TAG = "NewsAppClient";
     private static final String URL = "https://mysterious-retreat-42661.herokuapp.com/";
     private static final String LOGIN = "api/login.php?user_id=%s&password=%s";
-    private static final String ARTICLES = "api/article.php?auth_token=%s";
+    private static final String ARTICLES = "api/articles.php?auth_token=%s";
 
     private OkHttpClient client;
 
