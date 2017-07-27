@@ -6,6 +6,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 /**
  * Created by watanabe on 2017/07/27.
@@ -17,6 +18,9 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
         Realm.init(this);
+        new RealmConfiguration.Builder()
+                .deleteRealmIfMigrationNeeded()
+                .build();
     }
 
     /**
