@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NewsApp-master</string>
+    <string name="login">ログイン</string>
 </resources>
