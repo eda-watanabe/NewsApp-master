@@ -2,4 +2,7 @@
     <string name="app_name">NewsApp-master</string>
     <string name="login">ログイン</string>
     <string name="articles">記事一覧</string>
+
+    <string name="demo_short_text">学び続ける姿勢 by Clint Shank</string>
+    <string name="demo_long_text">いま私たちは実に面白い時代に生きています。ソフトウェア開発を仕事にする人は世界中に存在しています。自分と同じくらいの能力を持った人は、どこにでも、いくらでもいる、そう実感することも多いのではないでしょうか。そういう状況で自分の市場競争力を維持するためには、「学び続ける姿勢」がとても重要です。学ぶことを止めれば、早晩、恐竜のように滅びてしまうことになるでしょう。ずっと同じ仕事にしがみついていると、いずれ必要とされなくなる日が来ます。自分の仕事が、よりコストの安い誰かにアウトソースされることもありえます。</string>
 </resources>

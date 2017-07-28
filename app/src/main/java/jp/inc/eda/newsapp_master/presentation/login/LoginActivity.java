@@ -3,8 +3,10 @@ package jp.inc.eda.newsapp_master.presentation.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import jp.inc.eda.newsapp_master.R;
 import jp.inc.eda.newsapp_master.domain.usecase.LoginUseCase;
@@ -41,15 +43,22 @@ public class LoginActivity extends BaseActivity {
         findViewById(R.id.button_login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (!isOnLine(v.getContext())) {
+                    showOfflineAlert();
+                    return;
+                }
+
                 if (progress.getVisibility() == View.GONE) {
-                    progress.setVisibility(View.VISIBLE);
 
                     String i = id.getText().toString();
                     String p = pass.getText().toString();
                     if (i.isEmpty() || p.isEmpty()) {
-                        showToast("入力してください");
+                        showSnackbar("入力してください", (RelativeLayout) findViewById(R.id.layout_root));
                         return;
                     }
+
+                    progress.setVisibility(View.VISIBLE);
                     loginUseCase.login(i, p, new LoginUseCase.OnLoadingListener() {
                         @Override
                         public void onSuccess(String authToken) {
@@ -68,13 +77,14 @@ public class LoginActivity extends BaseActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    showToast(content);
+                                    progress.setVisibility(View.GONE);
+                                    showSnackbar(content, (ViewGroup) findViewById(R.id.layout_root));
                                 }
                             });
                         }
                     });
                 } else {
-                    showToast("ログイン中です");
+                    showSnackbar("ログイン中です", (RelativeLayout) findViewById(R.id.layout_root));
                 }
             }
         });
