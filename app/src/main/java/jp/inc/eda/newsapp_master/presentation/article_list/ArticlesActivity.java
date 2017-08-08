@@ -38,6 +38,7 @@ public class ArticlesActivity extends BaseActivity {
         init();
 
         toolbar.inflateMenu(R.menu.menu_articles);
+        toolbar.setNavigationIcon(R.drawable.newspaper);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

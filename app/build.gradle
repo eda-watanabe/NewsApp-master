@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
+apply plugin: 'deploygate'
 
 android {
     compileSdkVersion 25
@@ -16,6 +17,30 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+deploygate {
+
+    // If you are using automated build, you can specify your account credentials like this
+    userName = "watanabeeda"
+    token = "656ad1c4a95d0e77f4cdf8943f44365d52704462"
+
+    // You can also specify additional options for each flavor.
+    apks {
+
+        // this correspond to `debug` flavor and used for `uploadDeployGateDebug` task
+        debug {
+            // ProTip: get git hash for current commit for easier troubleshooting
+            def hash = 'git rev-parse --short HEAD'.execute([], project.rootDir).in.text.trim()
+            // set as build message
+            message = "debug build ${hash}"
+
+            // If this property is `true` , Skip dependency of `assemble` task from `uploadDeployGate` task
+            // The default value is `false`
+            noAssemble = true
+
         }
     }
 }

@@ -70,9 +70,7 @@ public class ArticleViewAdapter extends
 
         View view = inflater.inflate(R.layout.list_item_article, parent, false);
 
-        ViewHolder viewHolder = new ViewHolder(view);
-
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
 

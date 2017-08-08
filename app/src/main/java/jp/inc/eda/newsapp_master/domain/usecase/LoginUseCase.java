@@ -35,6 +35,7 @@ public class LoginUseCase {
                         } else {
                             // TODO: 2017/07/27
                             listener.onError(res.errorDescription);
+
                         }
                     }
                 });
