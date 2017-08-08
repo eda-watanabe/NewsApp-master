@@ -1,0 +1,16 @@
+language: android
+jdk: oraclejdk7
+
+android:
+  components:
+    - build-tools-26.0.0
+
+    # The SDK version used to compile your project
+    - android-25
+    - android-19
+  
+  script:
+    - echo "Travis branch is $TRAVIS_BRANCH"
+    - echo "Travis branch is in pull request $TRAVIS_PULL+REQUEST"
+    - script: ./gradlew connectedAndroidTest
+    - script: ./gradlew uploadDeployGateDebug
